@@ -1,5 +1,8 @@
 package com.jdk.enumtest.lamd;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @Author:bulingfeng
  * @Date: 2019-10-26

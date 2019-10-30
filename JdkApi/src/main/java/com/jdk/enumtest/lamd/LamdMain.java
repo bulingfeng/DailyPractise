@@ -1,7 +1,9 @@
 package com.jdk.enumtest.lamd;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.jdk.enumtest.model.Person;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @Author:bulingfeng
@@ -18,5 +20,28 @@ public class LamdMain {
         Runnable thread=() -> System.out.println("hello");
         Thread t1=new Thread(thread);
         t1.start();
+
+
+        /**
+         * :: 的使用
+         * 1:直接调用static的静态方法
+         * 2:可以调用get set方法
+         */
+        List<String> nams= Arrays.asList("jack","jane");
+        nams.forEach(LamdMain::helloLamd);
+
+        List<Person> personList=new ArrayList<>();
+        Person p=new Person();
+        p.setAge("18");
+        p.setName("lingfeng");
+        personList.add(p);
+
+        List<String> personName=personList.stream().map(Person::getName).collect(Collectors.toList());
+
+        personName.forEach(person -> System.out.println(person));
+    }
+
+    public static void helloLamd(String message){
+        System.out.println("hellLamd:"+message);
     }
 }

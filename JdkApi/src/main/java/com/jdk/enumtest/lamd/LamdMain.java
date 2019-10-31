@@ -39,6 +39,27 @@ public class LamdMain {
         List<String> personName=personList.stream().map(Person::getName).collect(Collectors.toList());
 
         personName.forEach(person -> System.out.println(person));
+
+
+        /**
+         * 构造器的使用
+         */
+        // demo-1
+        List<String> structureList=Arrays.asList("name-1");
+        List<Person> personList1=structureList.stream().map(Person::new).collect(Collectors.toList());
+        System.out.println(personList1);
+
+        // demo-2 把list对象通过构造器变成数组
+        Person[] personArray=personList1.stream().toArray(Person[]::new);
+        for (int i = 0; i < personArray.length; i++) {
+            System.out.println(personArray[i]);
+        }
+
+
+        /**
+         * 变量作用域
+         */
+
     }
 
     public static void helloLamd(String message){

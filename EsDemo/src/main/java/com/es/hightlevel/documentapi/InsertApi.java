@@ -6,6 +6,8 @@ import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.client.indices.CreateIndexRequest;
+import org.elasticsearch.common.xcontent.XContentBuilder;
+import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.common.xcontent.XContentType;
 
 import java.io.IOException;
@@ -16,7 +18,7 @@ import java.util.Map;
 /**
  * @Author:bulingfeng
  * @Date: 2019-11-04
- * 官方提供了3种文档的插入方式
+ * 官方提供了4种文档的插入方式
  * 自从es7.0以后开始去除了type的概念
  * 参考博客
  * https://blog.csdn.net/qq_32123821/article/details/97395023
@@ -34,7 +36,7 @@ public class InsertApi {
 
 
     /**
-     * 以json格式的形式来插入到索引中
+     * 方式1：以json格式的形式来插入到索引中
      */
     public static IndexRequest insertByJson() {
         IndexRequest request = new IndexRequest("twitter"); //索引
@@ -47,6 +49,53 @@ public class InsertApi {
                 "}";
         request.source(jsonString, XContentType.JSON);
         return request;
+    }
+
+    /**
+     * 第二种方式
+     * @return
+     */
+    public static IndexRequest insertByMap() {
+        Map<String, Object> jsonMap = new HashMap<>();
+        jsonMap.put("user", "kimchy");
+        jsonMap.put("postDate", new Date());
+        jsonMap.put("message", "trying out Elasticsearch");
+        IndexRequest indexRequest = new IndexRequest("twitter")
+                .id("4").source(jsonMap);
+        return indexRequest;
+    }
+
+    /**
+     * 第三种
+     * @return
+     * @throws IOException
+     */
+    public static IndexRequest insertByContenBuilder() throws IOException {
+        XContentBuilder builder = XContentFactory.jsonBuilder();
+        builder.startObject();
+        {
+            builder.field("user", "kimchy");
+            builder.timeField("postDate", new Date());
+            builder.field("message", "trying out Elasticsearch");
+        }
+        builder.endObject();
+        IndexRequest indexRequest = new IndexRequest("twitter")
+                .id("5").source(builder);
+        return indexRequest;
+    }
+
+    /**
+     * 第四种方式
+     * @return
+     * @throws IOException
+     */
+    public static IndexRequest insertBy() throws IOException {
+        IndexRequest indexRequest = new IndexRequest("posts")
+                .id("5")
+                .source("user", "kimchy",
+                        "postDate", new Date(),
+                        "message", "trying out Elasticsearch");
+        return indexRequest;
     }
 
     /**

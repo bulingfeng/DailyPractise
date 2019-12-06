@@ -18,6 +18,7 @@
     <modules>
         <module>Log</module>
         <module>JackSonTest</module>
+        <module>Filter</module>
     </modules>
 
 

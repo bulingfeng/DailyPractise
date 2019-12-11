@@ -19,6 +19,8 @@ import java.util.Map;
 public class KellyFormulaServiceImpl implements KellyFormulaService {
     public static final Integer count=300;
 
+    // 这里默认 赢的概率和输掉的概率都为50%
+    public static final int probablity=10;
 
     @Override
     public Map<String, Map<String, Double>> getChartByKellyFormula(String percent,String gains) {
@@ -29,11 +31,11 @@ public class KellyFormulaServiceImpl implements KellyFormulaService {
 
         int[] chanceArray=new int[100];
 
-        Integer percentNum=Integer.parseInt(percent);
+
 
         for (int i = 0; i < 100; i++) {
             // 0代表赢 1代表输
-            if (i<percentNum){
+            if (i<probablity){
                 chanceArray[i]=0;
             }else {
                 chanceArray[i]=1;
@@ -43,15 +45,18 @@ public class KellyFormulaServiceImpl implements KellyFormulaService {
         Map<String,Double> map1=new HashMap<>();
         // 假设原来你手里有500元
         double totalMoney=50;
-
+        Integer percentNum=Integer.parseInt(percent);
         LineChart lineChart=null;
         // 按照胜率的标准进行1000次投资
         for (int i = 0; i <count ; i++) {
+            // 拿出来一定比例的钱
+            double tempMoney=totalMoney*(percentNum/100.0);
+
             int randomNum=(int)(Math.random()*100);
             if (chanceArray[randomNum]==0){
-                totalMoney=totalMoney+Double.parseDouble(gains);
+                totalMoney+=(tempMoney+tempMoney*Double.parseDouble(gains));
             }else {
-                totalMoney=totalMoney-1;
+                totalMoney-=tempMoney;
             }
             lineChart=new LineChart();
             lineChart.setValue(totalMoney);

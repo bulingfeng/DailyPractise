@@ -1,5 +1,6 @@
 package com.makechars.service.impl;
 
+import com.makechars.constants.KellyConstants;
 import com.makechars.model.LineChart;
 import com.makechars.service.KellyFormulaService;
 import com.makechars.utils.ChartUtils;
@@ -17,13 +18,11 @@ import java.util.Map;
  */
 @Service
 public class KellyFormulaServiceImpl implements KellyFormulaService {
-    public static final Integer count=300;
 
-    // 这里默认 赢的概率和输掉的概率都为50%
-    public static final int probablity=10;
+
 
     @Override
-    public Map<String, Map<String, Double>> getChartByKellyFormula(String percent,String gains) {
+    public Map<String, Map<String, Double>> getChartByKellyFormula(String percent,String gains,String fileName) {
 
 
 
@@ -35,7 +34,7 @@ public class KellyFormulaServiceImpl implements KellyFormulaService {
 
         for (int i = 0; i < 100; i++) {
             // 0代表赢 1代表输
-            if (i<probablity){
+            if (i< KellyConstants.WIN_PROBALIBY){
                 chanceArray[i]=0;
             }else {
                 chanceArray[i]=1;
@@ -45,10 +44,10 @@ public class KellyFormulaServiceImpl implements KellyFormulaService {
         Map<String,Double> map1=new HashMap<>();
         // 假设原来你手里有500元
         double totalMoney=50;
-        Integer percentNum=Integer.parseInt(percent);
+        Double percentNum=Double.parseDouble(percent);
         LineChart lineChart=null;
         // 按照胜率的标准进行1000次投资
-        for (int i = 0; i <count ; i++) {
+        for (int i = 0; i <KellyConstants.COUNT ; i++) {
             // 拿出来一定比例的钱
             double tempMoney=totalMoney*(percentNum/100.0);
 
@@ -67,7 +66,7 @@ public class KellyFormulaServiceImpl implements KellyFormulaService {
 
 
         Font font = new Font("宋体", Font.BOLD, 20);
-        ChartUtils.createPort("凯利公式图表",lineChartList,"投资比例","钱(元)",font);
+        ChartUtils.createPort("凯利公式图表",lineChartList,"投资比例","钱(元)",font,fileName);
         return null;
     }
 }

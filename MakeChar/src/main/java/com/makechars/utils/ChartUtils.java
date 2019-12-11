@@ -30,7 +30,7 @@ public class ChartUtils {
      * @param danwei    柱状图的数量单位
      * @param font        字体
      */
-    public static void createPort(String title, List<LineChart> datas, String type, String danwei, Font font){
+    public static void createPort(String title, List<LineChart> datas, String type, String danwei, Font font,String fileName){
         try {
             //种类数据集
             DefaultCategoryDataset ds = new DefaultCategoryDataset();
@@ -49,9 +49,6 @@ public class ChartUtils {
              JFreeChart chart = ChartFactory.createLineChart(title, type, danwei, ds,//2D折线图
                                                            PlotOrientation.VERTICAL,
                                                          true, true, true);
-//            JFreeChart chart = ChartFactory.createLineChart3D(title, type, danwei, ds,//3D折线图
-//                    PlotOrientation.VERTICAL,
-//                    true, true, false);
 
             //设置整个图片的标题字体
             chart.getTitle().setFont(font);
@@ -80,7 +77,7 @@ public class ChartUtils {
 
             plot.setForegroundAlpha(1.0f);
 
-            ChartUtilities.saveChartAsJPEG(new File("/Users/bulingfeng/Desktop/learing/makechar/cc.png"), chart, 800, 400);
+            ChartUtilities.saveChartAsJPEG(new File("/Users/bulingfeng/Desktop/learing/makechar/"+fileName+".png"), chart, 800, 400);
         } catch (Exception e) {
             e.printStackTrace();
         }

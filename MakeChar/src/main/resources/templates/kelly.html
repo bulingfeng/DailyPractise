@@ -12,15 +12,19 @@
 </head>
 <body>
 	<h2>凯利公式</h2>
-	<p>赢和输的概率都为50%</p>
+	<p>
+		1:赢和输的概率都为50%
+		2:默认本金为100
+
+	</p>
 	<div style="margin:20px 0;"></div>
 	<div class="easyui-panel" title="New Topic" style="width:100%;max-width:400px;padding:30px 60px;">
 		<form id="ff" method="get" action="http://127.0.0.1:8080/kelly/get">
 			<div style="margin-bottom:20px">
-				<input class="easyui-numberbox" name="gains" style="width:100%" data-options="label:'获利:',required:true">
+				<input class="easyui-numberbox" name="gains" style="width:100%" min="0.01" value="0.5" max="1000" precision="2" data-options="label:'获利:',required:true">
 			</div>
 			<div style="margin-bottom:20px">
-				<input class="easyui-numberbox" name="percent" style="width:100%" data-options="label:'投资比例:',required:true">
+				<input class="easyui-numberbox" name="percent" style="width:100%" min="1" value="10" max="100" data-options="label:'投资比例:',required:true">
 			</div>
 		</form>
 		<div style="text-align:center;padding:5px 0">

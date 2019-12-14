@@ -51,10 +51,14 @@ public class KellyFormulaServiceImpl implements KellyFormulaService {
             double tempMoney=totalMoney*(percentNum/100.0);
 
             int randomNum=(int)(Math.random()*100);
-            if (chanceArray[randomNum]==0){
-                totalMoney+=(tempMoney+tempMoney*Double.parseDouble(gains));
+            if (totalMoney<=0){
+                totalMoney=0.0;
             }else {
-                totalMoney-=tempMoney;
+                if (chanceArray[randomNum]==0){
+                    totalMoney+=(tempMoney+tempMoney*Double.parseDouble(gains));
+                }else {
+                    totalMoney-=tempMoney;
+                }
             }
             lineChart=new LineChart();
             lineChart.setValue(totalMoney);

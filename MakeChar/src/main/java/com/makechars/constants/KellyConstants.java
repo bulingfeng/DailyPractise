@@ -16,6 +16,6 @@ public class KellyConstants {
 
 
     // 下载图片和上传图片的地址
-    public static final String IMAGE_PATH="/root/app/kelly/images";
+    public static final String IMAGE_PATH="/root/app/kelly/images/";
 
 }

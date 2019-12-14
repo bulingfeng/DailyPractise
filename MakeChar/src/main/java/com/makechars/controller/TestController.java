@@ -20,4 +20,10 @@ public class TestController {
         File file = ResourceUtils.getFile("classpath:static/images/cc.png");
         return "index";
     }
+
+    @RequestMapping("/kelly")
+    public String kellyChart() throws FileNotFoundException {
+        File file = ResourceUtils.getFile("classpath:static/images/cc.png");
+        return "kelly";
+    }
 }

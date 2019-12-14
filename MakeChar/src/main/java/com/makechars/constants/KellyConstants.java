@@ -10,4 +10,12 @@ public class KellyConstants {
 
     // 执行的次数
     public static final int COUNT=100;
+
+    // 手里有的本金
+    public static final double FUND= 100.0;
+
+
+    // 下载图片和上传图片的地址
+    public static final String IMAGE_PATH="/Users/bulingfeng/Desktop/learing/makechar/";
+
 }

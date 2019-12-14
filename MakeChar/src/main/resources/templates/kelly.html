@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Basic LinkButton - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="./themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="./themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="./demo/demo.css">
+	<script type="text/javascript" src="./jquery.min.js"></script>
+	<script type="text/javascript" src="./jquery.easyui.min.js"></script>
+<!--	<script type="text/javascript" src="form.js"></script>-->
+</head>
+<body>
+	<h2>凯利公式</h2>
+	<p>赢和输的概率都为50%</p>
+	<div style="margin:20px 0;"></div>
+	<div class="easyui-panel" title="New Topic" style="width:100%;max-width:400px;padding:30px 60px;">
+		<form id="ff" method="get" action="http://127.0.0.1:8080/kelly/get">
+			<div style="margin-bottom:20px">
+				<input class="easyui-numberbox" name="gains" style="width:100%" data-options="label:'获利:',required:true">
+			</div>
+			<div style="margin-bottom:20px">
+				<input class="easyui-numberbox" name="percent" style="width:100%" data-options="label:'投资比例:',required:true">
+			</div>
+		</form>
+		<div style="text-align:center;padding:5px 0">
+			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()" style="width:80px">Submit</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()" style="width:80px">Clear</a>
+		</div>
+	</div>
+	<script>
+		function submitForm(){
+			$.ajax({
+				//几个参数需要注意一下
+				type: "GET",//方法类型
+				dataType: "text",//预期服务器返回的数据类型
+				url: "/kelly/get" ,//url
+				data: $('#ff').serialize(),
+				success: function (result) {
+					downChart(result);
+				},
+				error : function() {
+					alert("异常！");
+				}
+			});
+		}
+		function clearForm(){
+			$('#ff').form('clear');
+		}
+
+		function downChart(imageName){
+			if (imageName=='' && imageName==null){
+				imageName="cc";
+			}
+			var url = "http://localhost:8080/chart/down?imageName=";
+			var form = $("<form></form>").attr("action", url).attr("method", "get");
+			form.append($("<input>").attr("type", "hidden").attr("name", "imageName").attr("value", imageName));
+			form.appendTo('body').submit().remove();
+		}
+	</script>
+</body>
+</html>

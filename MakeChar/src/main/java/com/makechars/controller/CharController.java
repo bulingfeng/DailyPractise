@@ -1,5 +1,6 @@
 package com.makechars.controller;
 
+import com.makechars.constants.KellyConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.util.ResourceUtils;
@@ -23,13 +24,15 @@ import java.io.IOException;
 public class CharController {
 
     @RequestMapping("/down")
-    public void downloadFileAction(HttpServletRequest request, HttpServletResponse response) {
+    public void downloadFileAction(String imageName,HttpServletRequest request, HttpServletResponse response) {
 
         response.setCharacterEncoding(request.getCharacterEncoding());
         response.setContentType("application/octet-stream");
         FileInputStream fis = null;
         try {
-            File file =ResourceUtils.getFile("classpath:static/images/cc.png");
+            String imagePath= KellyConstants.IMAGE_PATH+imageName+".png";
+            File file=new File(imagePath);
+//            File file =ResourceUtils.getFile("classpath:static/cc.png");
             fis = new FileInputStream(file);
             response.setHeader("Content-Disposition", "attachment; filename="+file.getName());
             IOUtils.copy(fis,response.getOutputStream());

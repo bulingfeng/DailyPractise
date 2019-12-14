@@ -42,8 +42,8 @@ public class KellyFormulaServiceImpl implements KellyFormulaService {
         }
 
         Map<String,Double> map1=new HashMap<>();
-        // 假设原来你手里有500元
-        double totalMoney=50;
+        // 手里存在的本金
+        double totalMoney=KellyConstants.FUND;
         Double percentNum=Double.parseDouble(percent);
         LineChart lineChart=null;
         // 按照胜率的标准进行1000次投资

@@ -4,6 +4,7 @@ import com.makechars.service.KellyFormulaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,11 +27,13 @@ public class KellController {
      *
      * @param percent 赢的概率
      * @param gains 获取的收益
+     * @param gains 手里有的
      */
     @GetMapping("/get")
-    public void createChart(String percent,String gains){
-        log.info("入参赢的概率percent:%$,收益gains:%s",percent,gains);
+    public String createChart(String percent,String gains){
+        log.info("入参赢的概率percent:{},收益gains:{}",percent,gains);
         kellyFormulaService.getChartByKellyFormula(percent,gains,percent+"%收益");
+        return "cc";
     }
 
     /**

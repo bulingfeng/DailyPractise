@@ -9,5 +9,5 @@ import java.util.Map;
  * @Date: 2019-12-11
  */
 public interface KellyFormulaService {
-    Map<String, Map<String, Double>> getChartByKellyFormula(String percent,String gains,String fileName);
+    String getChartByKellyFormula(String percent,String gains);
 }

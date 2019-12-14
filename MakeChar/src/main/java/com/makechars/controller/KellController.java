@@ -32,8 +32,7 @@ public class KellController {
     @GetMapping("/get")
     public String createChart(String percent,String gains){
         log.info("入参赢的概率percent:{},收益gains:{}",percent,gains);
-        kellyFormulaService.getChartByKellyFormula(percent,gains,percent+"%收益");
-        return "cc";
+        return kellyFormulaService.getChartByKellyFormula(percent,gains);
     }
 
     /**
@@ -46,6 +45,6 @@ public class KellController {
         // 计算应该按照最优的比例投资为
         double percentNum=WIN_PROBALIBY/100.0;
         double perfectPercent=((percentNum*3-(1-percentNum))/3.0)*100;
-        kellyFormulaService.getChartByKellyFormula(perfectPercent+"",gains,"完美凯利公式");
+        kellyFormulaService.getChartByKellyFormula(perfectPercent+"",gains);
     }
 }

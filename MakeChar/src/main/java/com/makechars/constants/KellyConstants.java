@@ -6,7 +6,7 @@ package com.makechars.constants;
  */
 public class KellyConstants {
     // 赢的概率
-    public static final double WIN_PROBALIBY=10.0;
+    public static final double WIN_PROBALIBY=50.0;
 
     // 执行的次数
     public static final int COUNT=100;
@@ -16,6 +16,6 @@ public class KellyConstants {
 
 
     // 下载图片和上传图片的地址
-    public static final String IMAGE_PATH="/Users/bulingfeng/Desktop/learing/makechar/";
+    public static final String IMAGE_PATH="/root/app/kelly/images";
 
 }

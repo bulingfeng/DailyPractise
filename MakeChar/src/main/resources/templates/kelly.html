@@ -52,7 +52,7 @@
 			if (imageName=='' && imageName==null){
 				imageName="cc";
 			}
-			var url = "http://localhost:8080/chart/down?imageName=";
+			var url = "http://localhost:8080/chart/down";
 			var form = $("<form></form>").attr("action", url).attr("method", "get");
 			form.append($("<input>").attr("type", "hidden").attr("name", "imageName").attr("value", imageName));
 			form.appendTo('body').submit().remove();

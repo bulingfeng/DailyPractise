@@ -13,7 +13,7 @@
     <groupId>com.char</groupId>
     <artifactId>make_char</artifactId>
     <version>1.0-SNAPSHOT</version>
-
+    <packaging>jar</packaging>
     <dependencies>
         <!-- 图表所需要的jar-->
         <dependency>
@@ -47,4 +47,15 @@
 
     </dependencies>
 
+
+
+    <!-- Package as an executable jar -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>

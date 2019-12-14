@@ -7,6 +7,7 @@ package com.makechars.utils;
 import java.awt.Color;
 import java.awt.Font;
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Map.Entry;
 
@@ -77,6 +78,7 @@ public class ChartUtils {
             // plot.setBackgroundImage(ImageIO.read(new File("f:/test/2.jpg")));
 
             plot.setForegroundAlpha(1.0f);
+
 
             ChartUtilities.saveChartAsJPEG(new File(KellyConstants.IMAGE_PATH +fileName+".png"), chart, 800, 400);
         } catch (Exception e) {

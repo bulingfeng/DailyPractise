@@ -7,10 +7,9 @@ import com.makechars.utils.ChartUtils;
 import org.springframework.stereotype.Service;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @Author:bulingfeng
@@ -22,7 +21,7 @@ public class KellyFormulaServiceImpl implements KellyFormulaService {
 
 
     @Override
-    public Map<String, Map<String, Double>> getChartByKellyFormula(String percent,String gains,String fileName) {
+    public String getChartByKellyFormula(String percent,String gains) {
 
 
 
@@ -64,9 +63,13 @@ public class KellyFormulaServiceImpl implements KellyFormulaService {
             lineChartList.add(lineChart);
         }
 
+        Date now = new Date(); // 创建一个Date对象，获取当前时间
+        // 指定格式化格式
+        SimpleDateFormat f = new SimpleDateFormat("yyyyMMddMMss");
+        String fileName=f.format(now)+"-"+System.currentTimeMillis();
 
         Font font = new Font("宋体", Font.BOLD, 20);
         ChartUtils.createPort("凯利公式图表",lineChartList,"投资比例","钱(元)",font,fileName);
-        return null;
+        return fileName;
     }
 }

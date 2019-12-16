@@ -51,7 +51,7 @@ public class KellyFormulaServiceImpl implements KellyFormulaService {
             double tempMoney=totalMoney*(percentNum/100.0);
 
             int randomNum=(int)(Math.random()*100);
-            if (totalMoney<=0){
+            if (totalMoney<1.0){
                 totalMoney=0.0;
             }else {
                 if (chanceArray[randomNum]==0){

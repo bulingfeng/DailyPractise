@@ -1,0 +1,20 @@
+package com.test.somerule
+
+
+
+rule "somerule-1"
+no-loop true
+ when
+    eval(true)
+then
+    System.out.println("somerule-1");
+end
+
+
+rule "somerule-2"
+no-loop true
+ when
+    eval(true)
+then
+    System.out.println("somerule-2");
+end

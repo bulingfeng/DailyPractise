@@ -2,6 +2,7 @@ package com.springdrools.springdrools.utils;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.drools.core.base.RuleNameEqualsAgendaFilter;
 import org.drools.core.io.impl.ByteArrayResource;
 import org.kie.api.KieBase;
 import org.kie.api.io.ResourceType;
@@ -29,7 +30,7 @@ public class ActionDrlUtils {
      * @param inputParams 入参
      * @return
      */
-    public static Map<String, Object> actionRule(String drlContent,Map<String,Object> inputParams){
+    public static Map<String, Object> actionAllRule(String drlContent,Map<String,Object> inputParams){
 
         KieSession kieSession=createKieSession(drlContent);
         // 开始执行规则，并且获取到规则的返回值
@@ -67,6 +68,13 @@ public class ActionDrlUtils {
             throw new RuntimeException("no activationGroupName: " + activationGroupName);
         }
         int n = kieSession.fireAllRules();
+        log.info("agenda-group 执行了{}规则",n);
+        kieSession.dispose();
+    }
+
+    public static void actionSomeRule(String drlContent,String ruleName){
+        KieSession kieSession=createKieSession(drlContent);
+        int n = kieSession.fireAllRules(new RuleNameEqualsAgendaFilter(ruleName));
         log.info("agenda-group 执行了{}规则",n);
         kieSession.dispose();
     }

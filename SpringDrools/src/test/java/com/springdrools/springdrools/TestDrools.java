@@ -18,7 +18,7 @@ public class TestDrools {
         String drlContent= ReadDrlUtils.readDrlFile("TestDrl.drl");
         Map<String,Object> inputParam=new HashMap<>();
         inputParam.put("test",true);
-        Map<String, Object> result= ActionDrlUtils.actionRule(drlContent,inputParam);
+        Map<String, Object> result= ActionDrlUtils.actionAllRule(drlContent,inputParam);
         System.out.println("执行规则后的结果为:"+result);
     }
 
@@ -32,5 +32,11 @@ public class TestDrools {
     public void activationGroup(){
         String drlContent= ReadDrlUtils.readDrlFile("ActivationGroup.drl");
         ActionDrlUtils.actionRuleByActivationGroup(drlContent,"activation-group-test");
+    }
+
+    @Test
+    public void someRule(){
+        String drlContent= ReadDrlUtils.readDrlFile("SomeRule.drl");
+        ActionDrlUtils.actionSomeRule(drlContent,"somerule-1");
     }
 }

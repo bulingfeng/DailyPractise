@@ -1,3 +1,9 @@
+/**
+1:Agenda Group 是用来在 Agenda的基础之上，对现在的规则进行再次分组.Agenda Group 得到 Focus（焦点），
+这样位于该 Agenda Group当中的规则才会触发执行，否则将不执行。
+2:只会执行指定agenda-group中的规则
+*/
+
 package com.test.agendagroup
 
 rule "agendagroup test 1"

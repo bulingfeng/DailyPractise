@@ -6,6 +6,7 @@ import org.drools.core.io.impl.ByteArrayResource;
 import org.kie.api.KieBase;
 import org.kie.api.io.ResourceType;
 import org.kie.api.runtime.KieSession;
+import org.kie.api.runtime.rule.ActivationGroup;
 import org.kie.api.runtime.rule.AgendaGroup;
 import org.kie.api.runtime.rule.FactHandle;
 import org.kie.internal.builder.KnowledgeBuilder;
@@ -59,6 +60,16 @@ public class ActionDrlUtils {
     }
 
 
+    public static void actionRuleByActivationGroup(String drlContent,String activationGroupName){
+        KieSession kieSession=createKieSession(drlContent);
+        ActivationGroup activationGroup=kieSession.getAgenda().getActivationGroup(activationGroupName);
+        if (activationGroup == null){
+            throw new RuntimeException("no activationGroupName: " + activationGroupName);
+        }
+        int n = kieSession.fireAllRules();
+        log.info("agenda-group 执行了{}规则",n);
+        kieSession.dispose();
+    }
     /**
      * 创建kieSession
      * @param drlContent

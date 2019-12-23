@@ -1,0 +1,32 @@
+/*
+1:如果同一组规则，谁的salience高就执行谁，没有则按顺序执行最后同组最后那个规则
+2:和agendagroup的区别在于 这个只会执行activation-group中优先级最高的一个规则
+*/
+package com.test.activationgroup
+
+
+rule "activation-group-rule-1"
+salience 10
+activation-group "activation-group-test"
+when
+    eval(true)
+then
+    System.out.println("activation-group-rule-1 ---- salience 10");
+end
+
+rule "activation-group-rule-2"
+salience 9
+activation-group "activation-group-test"
+when
+    eval(true)
+then
+    System.out.println("activation-group-rule-1 ---- salience 9");
+end
+
+rule "activation-group-rule-3"
+activation-group "activation-group-test"
+when
+    eval(true)
+then
+    System.out.println("activation-group-rule-1 ---- salience default");
+end

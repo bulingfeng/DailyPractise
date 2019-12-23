@@ -27,4 +27,10 @@ public class TestDrools {
         String drlContent= ReadDrlUtils.readDrlFile("AgendaGroup.drl");
         ActionDrlUtils.actionRuleByAgendaGroup(drlContent,"test");
     }
+
+    @Test
+    public void activationGroup(){
+        String drlContent= ReadDrlUtils.readDrlFile("ActivationGroup.drl");
+        ActionDrlUtils.actionRuleByActivationGroup(drlContent,"activation-group-test");
+    }
 }

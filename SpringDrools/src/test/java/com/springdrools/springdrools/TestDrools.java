@@ -39,4 +39,10 @@ public class TestDrools {
         String drlContent= ReadDrlUtils.readDrlFile("SomeRule.drl");
         ActionDrlUtils.actionSomeRule(drlContent,"somerule-1");
     }
+
+    @Test
+    public void flowGroup(){
+        String drlContent= ReadDrlUtils.readDrlFile("RuleFlowGroup.drl");
+        ActionDrlUtils.actionRuleByAgendaGroup(drlContent,"ruleflow-1");
+    }
 }

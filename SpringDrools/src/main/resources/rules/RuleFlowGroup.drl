@@ -1,0 +1,19 @@
+
+
+package com.test.ruleflowgroup
+
+rule "ruleflow-group-1"
+ruleflow-group "ruleflow-1"
+when
+    eval(true)
+then
+    System.out.println("ruleflow-1 --- ruleflow-group-1 执行了");
+end
+
+rule "ruleflow-group-2"
+ruleflow-group "ruleflow-1"
+when
+    eval(true)
+then
+    System.out.println("ruleflow-1 --- ruleflow-group-2 执行了");
+end

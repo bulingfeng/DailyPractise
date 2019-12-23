@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @Author:bulingfeng
  * @Date: 2019-12-19
+ * @RequestMapping的各项参数
+ * https://blog.csdn.net/weixin_43453386/article/details/83419060
  */
 @RequestMapping("/test")
 @RestController

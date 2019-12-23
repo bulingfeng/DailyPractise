@@ -1,0 +1,13 @@
+package com.test.rules
+
+import java.util.Map
+
+rule "test springboot integration drools"
+no-loop true
+ when
+    // 这里飘红 不影响执行结果
+    $map:Map(this['test']==true)
+then
+    $map.put("result","success");
+    System.out.println("test springboot integration drools 执行了");
+end

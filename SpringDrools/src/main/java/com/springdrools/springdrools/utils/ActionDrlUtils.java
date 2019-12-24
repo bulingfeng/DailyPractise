@@ -12,6 +12,7 @@ import org.kie.api.runtime.rule.AgendaGroup;
 import org.kie.api.runtime.rule.FactHandle;
 import org.kie.internal.builder.KnowledgeBuilder;
 import org.kie.internal.builder.KnowledgeBuilderFactory;
+import org.kie.internal.utils.KieHelper;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
@@ -32,7 +33,8 @@ public class ActionDrlUtils {
      */
     public static Map<String, Object> actionAllRule(String drlContent,Map<String,Object> inputParams){
 
-        KieSession kieSession=createKieSession(drlContent);
+//        KieSession kieSession=createKieSession(drlContent);
+        KieSession kieSession=createKieSessionByKieHelper(drlContent);
         // 开始执行规则，并且获取到规则的返回值
         FactHandle factHandle = kieSession.insert(inputParams);
         // 查看执行了多少条规则
@@ -79,7 +81,7 @@ public class ActionDrlUtils {
         kieSession.dispose();
     }
     /**
-     * 创建kieSession
+     * 使用KnowledgeBuilder创建kieSession
      * @param drlContent
      * @return
      */
@@ -100,6 +102,18 @@ public class ActionDrlUtils {
         return kieSession;
     }
 
+    /**
+     * 使用KieHelper来创建KieSession
+     * @param drlContent
+     * @return
+     */
+    private static KieSession createKieSessionByKieHelper(String drlContent){
+        KieHelper kieHelper=new KieHelper();
+        KieBase kieBase=null;
+        kieHelper.addContent(drlContent,ResourceType.DRL);
+        kieBase=kieHelper.build();
+        return kieBase.newKieSession();
+    }
 
 
 

@@ -22,7 +22,7 @@ public class ReadDrlUtils {
      * @return
      */
     public static String readDrlFile(String fileName) {
-        InputStream inputStream=ReadDrlUtils.class.getClassLoader().getResourceAsStream("rules/"+fileName);
+        InputStream inputStream=ReadDrlUtils.class.getClassLoader().getResourceAsStream(fileName);
 
         BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
         StringBuffer sb=new StringBuffer();

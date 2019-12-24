@@ -12,10 +12,10 @@ import java.util.Map;
  * @Date: 2019-12-23
  */
 public class TestDrools {
-
+    public static final String path="rules/stateful/";
     @Test
     public void testDrl(){
-        String drlContent= ReadDrlUtils.readDrlFile("TestDrl.drl");
+        String drlContent= ReadDrlUtils.readDrlFile(path+"TestDrl.drl");
         Map<String,Object> inputParam=new HashMap<>();
         inputParam.put("test",true);
         Map<String, Object> result= ActionDrlUtils.actionAllRule(drlContent,inputParam);
@@ -24,25 +24,25 @@ public class TestDrools {
 
     @Test
     public void agendaGroup(){
-        String drlContent= ReadDrlUtils.readDrlFile("AgendaGroup.drl");
+        String drlContent= ReadDrlUtils.readDrlFile(path+"AgendaGroup.drl");
         ActionDrlUtils.actionRuleByAgendaGroup(drlContent,"test");
     }
 
     @Test
     public void activationGroup(){
-        String drlContent= ReadDrlUtils.readDrlFile("ActivationGroup.drl");
+        String drlContent= ReadDrlUtils.readDrlFile(path+"ActivationGroup.drl");
         ActionDrlUtils.actionRuleByActivationGroup(drlContent,"activation-group-test");
     }
 
     @Test
     public void someRule(){
-        String drlContent= ReadDrlUtils.readDrlFile("SomeRule.drl");
+        String drlContent= ReadDrlUtils.readDrlFile(path+"SomeRule.drl");
         ActionDrlUtils.actionSomeRule(drlContent,"somerule-1");
     }
 
     @Test
     public void flowGroup(){
-        String drlContent= ReadDrlUtils.readDrlFile("RuleFlowGroup.drl");
+        String drlContent= ReadDrlUtils.readDrlFile(path+"RuleFlowGroup.drl");
         ActionDrlUtils.actionRuleByAgendaGroup(drlContent,"ruleflow-1");
     }
 }

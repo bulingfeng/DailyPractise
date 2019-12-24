@@ -1,6 +1,9 @@
 package com.springdrools.springdrools;
 
+import com.springdrools.springdrools.entity.Person;
+import com.springdrools.springdrools.utils.StatelessKieSessionUtils;
 import org.junit.jupiter.api.Test;
+import org.kie.api.runtime.StatelessKieSession;
 
 /**
  * @Author:bulingfeng
@@ -10,7 +13,10 @@ public class StatelessKieSessionTest {
     private static final String path="rules/stateless/";
 
     @Test
-    public void testStatelessKiesSession(){
-
+    public void testStatelessKieSession(){
+        Person person=new Person();
+        person.setAge(18);
+        person.setName("peak");
+        StatelessKieSessionUtils.actionSatelessKieSession(path+"Test.drl",person);
     }
 }

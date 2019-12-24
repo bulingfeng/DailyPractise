@@ -1,0 +1,9 @@
+package com.test.statelesskiesession.test
+
+import com.springdrools.springdrools.entity.Person
+rule "statelesskiesession-test-1"
+when
+    $p:Person()
+then
+    System.out.println(drools.getRule().getName()+"---"+$p.getName());
+end

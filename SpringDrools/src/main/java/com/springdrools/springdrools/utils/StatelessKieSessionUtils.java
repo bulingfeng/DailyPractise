@@ -19,6 +19,17 @@ public class StatelessKieSessionUtils {
 
 
     /**
+     * 执行无状态的kieSession
+     * @param path
+     * @param inputParam
+     */
+    public static void actionSatelessKieSession(String path,Object inputParam){
+        String drlContent=ReadDrlUtils.readDrlFile(path);
+        StatelessKieSession statelessKieSession=createStatelessKieSession(drlContent);
+        statelessKieSession.execute(inputParam);
+    }
+
+    /**
      * 创建StatelessKieSession
      * @param drlContent
      * @return

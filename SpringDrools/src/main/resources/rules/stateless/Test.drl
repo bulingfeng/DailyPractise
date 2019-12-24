@@ -1,9 +1,47 @@
 package com.test.statelesskiesession.test
 
 import com.springdrools.springdrools.entity.Person
+import com.springdrools.springdrools.entity.School
+
 rule "statelesskiesession-test-1"
 when
     $p:Person()
 then
     System.out.println(drools.getRule().getName()+"---"+$p.getName());
+end
+
+
+rule "statelesskiesession-test-2"
+when
+    $s:School()
+then
+    System.out.println(drools.getRule().getName()+"---"+$s.getClassName());
+end
+
+
+rule "statelesskiesession-test-3"
+when
+    $s:School()
+    $p:Person()
+then
+    System.out.println(drools.getRule().getName()+"---"+$s.getClassName()+"name:"+$p.getName());
+end
+
+/*
+这里做一个数据的更新后，在StatelessKieSession批量执行下是否会触发
+*/
+rule "statelesskiesession-test-batch-1"
+when
+    $p:Person()
+then
+    $p.setName("jack");
+    System.out.println(drools.getRule().getName()+"---"+"更新名字为:"+$p.getName());
+    update($p)
+end
+
+rule "statelesskiesession-test-batch-2"
+when
+    $p:Person(name=="jack")
+then
+    System.out.println(drools.getRule().getName()+"---"+"update操作触发了,名字为:"+$p.getName());
 end

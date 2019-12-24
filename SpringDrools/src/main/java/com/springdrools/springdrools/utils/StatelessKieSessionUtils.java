@@ -3,7 +3,11 @@ package com.springdrools.springdrools.utils;
 import org.kie.api.KieBase;
 import org.kie.api.io.ResourceType;
 import org.kie.api.runtime.StatelessKieSession;
+import org.kie.internal.command.CommandFactory;
 import org.kie.internal.utils.KieHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Author:bulingfeng
@@ -23,10 +27,22 @@ public class StatelessKieSessionUtils {
      * @param path
      * @param inputParam
      */
-    public static void actionSatelessKieSession(String path,Object inputParam){
+    public static void actionStatelessKieSession(String path,Object inputParam){
         String drlContent=ReadDrlUtils.readDrlFile(path);
         StatelessKieSession statelessKieSession=createStatelessKieSession(drlContent);
         statelessKieSession.execute(inputParam);
+    }
+
+
+    public static void actionStatelessKieSessionBatch(String path, List objectList){
+        String drlContent=ReadDrlUtils.readDrlFile(path);
+        StatelessKieSession statelessKieSession=createStatelessKieSession(drlContent);
+        // objectList中的实体类转换为command
+        List commandList=new ArrayList();
+        for (Object o : objectList) {
+            commandList.add(CommandFactory.newInsert(o));
+        }
+        statelessKieSession.execute(CommandFactory.newBatchExecution(commandList));
     }
 
     /**

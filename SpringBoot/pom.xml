@@ -19,7 +19,7 @@
         <module>Log</module>
         <module>JackSonTest</module>
         <module>Filter</module>
-        <module>Jwt</module>
+        <module>Session</module>
     </modules>
 
 

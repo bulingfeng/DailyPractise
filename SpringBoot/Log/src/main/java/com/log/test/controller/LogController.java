@@ -1,6 +1,8 @@
 package com.log.test.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,4 +23,20 @@ public class LogController {
         log.info("name为:"+name);
         return String.format(message,name);
     }
+
+    @GetMapping("/exception")
+    public String testException(String name){
+        if (StringUtils.isEmpty(name)){
+            throw new RuntimeException("name为空");
+        }
+        return "success";
+    }
+
+    //局部异常处理（ps：对于参数必填的400异常也会被此异常处理器捕获）
+    @ExceptionHandler(Exception.class)
+    public String exHandler(Exception e) {
+        // 未知的异常做出响应   
+        return "controller异常了";
+    }
+
 }

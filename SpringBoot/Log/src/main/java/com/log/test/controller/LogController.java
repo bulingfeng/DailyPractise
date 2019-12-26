@@ -14,7 +14,7 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 @RestController
 @Slf4j
-public class LogController {
+public class LogController{
     public static final String message="hello,%s";
     public static final AtomicLong count=new AtomicLong(0);
 
@@ -32,11 +32,5 @@ public class LogController {
         return "success";
     }
 
-    //局部异常处理（ps：对于参数必填的400异常也会被此异常处理器捕获）
-    @ExceptionHandler(Exception.class)
-    public String exHandler(Exception e) {
-        // 未知的异常做出响应   
-        return "controller异常了";
-    }
 
 }

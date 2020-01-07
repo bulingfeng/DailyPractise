@@ -14,19 +14,19 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 @RestController
 @Slf4j
-public class LogController{
-    public static final String message="hello,%s";
-    public static final AtomicLong count=new AtomicLong(0);
+public class LogController {
+    public static final String message = "hello,%s";
+    public static final AtomicLong count = new AtomicLong(0);
 
     @GetMapping("/name")
-    public String testLog(String name){
-        log.info("name为:"+name);
-        return String.format(message,name);
+    public String testLog(String name) {
+        log.info("name为:" + name);
+        return String.format(message, name);
     }
 
     @GetMapping("/exception")
-    public String testException(String name){
-        if (StringUtils.isEmpty(name)){
+    public String testException(String name) {
+        if (StringUtils.isEmpty(name)) {
             throw new RuntimeException("name为空");
         }
         return "success";

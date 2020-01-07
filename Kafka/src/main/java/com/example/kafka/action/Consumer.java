@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 public class Consumer {
-    @KafkaListener(topics = "test",groupId = "myGroup")
+    @KafkaListener(topics = "test")
     public void listener(ConsumerRecord<String, String> record) {
         String value = record.value();
         log.info("【receive】:{}", value);

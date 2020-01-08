@@ -33,7 +33,7 @@ public class KafkaConsumerConfig {
         props.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, 50);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        props.put(ConsumerConfig.GROUP_ID_CONFIG,"mygroup");
+        props.put(ConsumerConfig.GROUP_ID_CONFIG,this.consumerGroupId);
         return new DefaultKafkaConsumerFactory<>(props);
     }
 
